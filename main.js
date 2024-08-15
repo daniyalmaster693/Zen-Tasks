@@ -1,7 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const taskTitle = document.querySelector(".task-title-input");
+  const taskDescription = document.querySelector(".task-description-input");
+  const taskDueDate = document.querySelector(".task-due-date-input");
+  const addTaskButton = document.querySelector(".add-new-task");
   const modal = document.querySelector(".modal");
   const modalOverlay = document.querySelector(".modal-overlay");
+  const createTask = document.querySelector(".create-task");
   const addTask = document.querySelector(".add-task-button");
+
+  const allTasks = [];
+  const todayTasks = [];
+  const noDateTasks = [];
 
   function showModal() {
     modal.classList.add("visible");
