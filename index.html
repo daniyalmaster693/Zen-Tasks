@@ -9,18 +9,202 @@
   <meta http-equiv="pragma" content="no-cache" />
   <meta name="Enter page description" content="A to do list app" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="image/png" sizes="32x32" href="Insert File Name" />
-  <script src="script.js"></script>
+  <link rel="icon" type="image/png" sizes="32x32" href="/Odin Project/Zen-Tasks/Assets/Zen Tasks.png" />
+  <script src="main.js"></script>
   <title>Zen Tasks</title>
 </head>
 
 <body>
-  <div class="footer">
+  <section class="main-container">
+    <section class="tasks-top">
+      <h1 class="section-title">Today</h1>
+
+      <section class="task-stats">
+        <div class="pending-tasks">
+          <p class="pending-number">5</p>
+          <p class="pending-description">Pending Tasks</p>
+        </div>
+
+        <div class="completed-tasks">
+          <p class="completed-number">5</p>
+          <p class="completed-description">Completed Tasks</p>
+        </div>
+
+        <div class="daily-goal">
+          <p class="daily-goal-number">0/5</p>
+          <p class="daily-goal-description">Daily Goal</p>
+        </div>
+      </section>
+    </section>
+
+    <section class="tasks-container">
+      <p class="tasks-container-title">Tasks</p>
+
+      <div class="task">
+        <img src="/Odin Project/Zen-Tasks/Assets/Circle.svg" alt="task checkbox" class="task-check">
+
+        <h2 class="task-title">
+          In qui labore esse nostrud
+        </h2>
+
+        <div class="task-date">
+          <p class="date">2024 - 05 - 24</p>
+        </div>
+      </div>
+
+      <hr class="task-hr" />
+
+      <div class="task">
+        <img src="/Odin Project/Zen-Tasks/Assets/Circle.svg" alt="task checkbox" class="task-check">
+
+        <h2 class="task-title">
+          In qui labore esse nostrud nostrud non elit duis qui duis commodo
+        </h2>
+
+        <div class="task-date">
+          <p class="date">2024 - 05 - 24</p>
+        </div>
+      </div>
+
+      <hr class="task-hr" />
+
+      <div class="task">
+        <img src="/Odin Project/Zen-Tasks/Assets/Circle.svg" alt="task checkbox" class="task-check">
+
+        <h2 class="task-title">
+          In qui labore esse nostrud nostrud non elit duis qui duis commodo
+        </h2>
+
+        <div class="task-date">
+          <p class="date">2024 - 05 - 24</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <img src="/Odin Project/Zen-Tasks/Assets/Circle.svg" alt="task checkbox" class="task-check">
+
+        <h2 class="task-title">
+          In qui labore esse nostrud nostrud non elit duis qui duis commodo
+        </h2>
+
+        <div class="task-date">
+          <p class="date">2024 - 05 - 24</p>
+        </div>
+      </div>
+
+
+      <div class="task">
+        <img src="/Odin Project/Zen-Tasks/Assets/Circle.svg" alt="task checkbox" class="task-check">
+
+        <h2 class="task-title">
+          In qui labore esse nostrud nostrud non elit duis qui duis commodo
+        </h2>
+
+        <div class="task-date">
+          <p class="date">2024 - 05 - 24</p>
+        </div>
+      </div>
+
+
+      <div class="task">
+        <img src="/Odin Project/Zen-Tasks/Assets/Circle.svg" alt="task checkbox" class="task-check">
+
+        <h2 class="task-title">
+          In qui labore esse nostrud nostrud non elit duis qui duis commodo
+        </h2>
+
+        <div class="task-date">
+          <p class="date">2024 - 05 - 24</p>
+        </div>
+      </div>
+      </div>
+
+      <hr class="task-hr" />
+    </section>
+
+    <section class="tasks-modal">
+      <div class="modal">
+        <h2 class="modal-title">Add New Task</h2>
+
+        <div class="task-title">
+          <p class="input-title">Title</p>
+          <input type="text" class="task-title-input" minlength="1" placeholder="Task Title">
+        </div>
+
+        <div class="task-description">
+          <p class="input-title">Description</p>
+          <input type="text" class="task-description-input" minlength="1" placeholder="Task Description">
+        </div>
+
+        <div class="task-due-date">
+          <p class="input-title">Due Date</p>
+          <input type="text" class="task-due-date-input" minlength="1" placeholder="Task Date">
+        </div>
+
+        <div class="task-priority">
+          <p class="input-title">Priority</p>
+
+          <select name="priority-level" class="task-priority-level">
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+            <option value="None" selected>None</option>
+          </select>
+        </div>
+
+        <button class="create-task">Create Task</button>
+      </div>
+
+      <div class="modal">
+        <h2 class="add-new-book">Add New Book</h2>
+
+        <div class="book">
+          <p class="title-1">Book</p>
+          <p class="book-input-error">*This Field is Required</p>
+          <input type="text" class="book-input" id="book-name" minlength="1" placeholder="Title" />
+        </div>
+
+        <div class="author">
+          <p class="title-2">Author</p>
+          <p class="author-input-error">*This Field is Required</p>
+          <input type="text" class="author-input" id="author-name" minlength="1" placeholder="Author" />
+        </div>
+
+        <div class="pages">
+          <p class="title-3">Pages</p>
+          <p class="pages-input-error">*This Field is Required</p>
+          <input type="number" class="pages-input" id="page-amount" minlength="1" placeholder="Pages" />
+        </div>
+
+        <div class="status">
+          <h3 class="title-4">Status</h3>
+          <select name="status" class="book-status">
+            <option value="Read">Read</option>
+            <option value="Unread">Unread</option>
+          </select>
+        </div>
+
+        <div class="submit">
+          <button class="submit-book">Submit</button>
+        </div>
+      </div>
+
+      <div class="modal-overlay"></div>
+    </section>
+
+    <section class="add-task">
+      <button class="add-task-button">+ Add Task</button>
+    </section>
+
+    <section class="dock"> </section>
+  </section>
+
+  <footer class="footer">
     <p>
       Coded by
       <a href="https://github.com/Blaze4884" target="_blank" rel="noopener">Daniyal Master</a>.
     </p>
-  </div>
+  </footer>
 </body>
 
 </html>

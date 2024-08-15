@@ -1,14 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Inter:wght@100..900&display=swap");
 
 :root {
-  --nunito-sans: "Nunito Sans", Arial, Helvetica, sans-serif;
-  --primary-white: #fff;
-  --primary-black: #050505;
-  --hover-black: rgba(36, 36, 36, 0.75);
-  --primary-grey: #e0e0e0;
-  --secondary-grey: #a6a6a6;
+  --Inter: "Inter", Arial, Helvetica, sans-serif;
+  --background-color: #1e2022;
+  --hover-color: #32383e;
+  --primary-text: #f0f5f9;
+  --secondary-text: #c9d6df;
+  --accent-color: #52616b;
   --border-color: #202123;
-  --border-hover-color: #2c2d2e;
+  --border-radius: 0.625rem;
+  --hr: 1px solid #35353b;
+  --secondary-radius: 0.4375rem;
   --fadeIn: 0.5s forwards ease;
   --ease-in-out: all 0.3s ease-in-out;
 }
@@ -26,27 +28,281 @@
 }
 
 body {
-  background-color: var(--primary-black);
+  background-color: var(--background-color);
+  font-family: var(--Inter);
   min-height: 100vh;
 }
 
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.section-title {
+  color: var(--primary-text);
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.task-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.pending-tasks,
+.completed-tasks,
+.daily-goal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 125px;
+  width: 255px;
+  background-color: var(--hover-color);
+  border-radius: var(--border-radius);
+}
+
+.pending-number,
+.completed-number,
+.daily-goal-number {
+  color: var(--primary-text);
+  font-size: 1.75rem;
+  font-weight: 400;
+}
+
+.pending-description,
+.completed-description,
+.daily-goal-description {
+  color: var(--secondary-text);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5em;
+  letter-spacing: 0.023rem;
+}
+
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 75px;
+}
+
+.tasks-container-title {
+  color: var(--primary-text);
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  width: 800px;
+  height: 60px;
+  border-radius: 1rem;
+  margin-bottom: 0.25rem;
+  transition: var(--ease-in-out);
+}
+
+.task-check {
+  height: 22px;
+  width: 22px;
+  cursor: pointer;
+}
+
+.task-title {
+  color: var(--primary-text);
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.5em;
+}
+
+.date {
+  color: var(--secondary-text);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5em;
+  letter-spacing: 0.023rem;
+}
+
+.task-hr {
+  width: 50em;
+  border: var(--hr);
+}
+
+.add-task {
+  margin-top: 50px;
+}
+
+.add-task-button {
+  color: var(--primary-text);
+  font-size: 1rem;
+  font-weight: 500;
+  height: 40px;
+  width: 150px;
+  border: none;
+  border-radius: var(--border-radius);
+  outline: 1px solid var(--accent-color);
+  background-color: var(--primary-black);
+  cursor: pointer;
+  transition: var(--ease-in-out);
+}
+
+.add-task-button:hover {
+  background-color: var(--hover-color);
+}
+
+.tasks-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 700px;
+  width: 425px;
+  padding: 50px 40px 50px 40px;
+  position: fixed;
+  top: 12%;
+  z-index: 2;
+  background-color: var(--hover-color);
+  border-radius: var(--border-radius);
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.modal-title {
+  color: var(--primary-text);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.modal.visible {
+  transform: scale(1);
+}
+
+.task-title,
+.task-description,
+.task-due-date,
+.task-priority {
+  margin: 1rem 0rem 1rem 0rem;
+}
+
+.input-title {
+  color: var(--primary-text);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.task-title-input,
+.task-description-input,
+.task-due-date-input {
+  color: var(--secondary-text);
+  background-color: var(--accent-color);
+  height: 2.5rem;
+  width: 95%;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0px 15px 0px 15px;
+}
+
+.task-title-input:focus,
+.task-description-input:focus,
+.task-due-date-input:focus {
+  color: var(--secondary-text);
+  font-size: 1rem;
+  font-weight: 500;
+  outline: none;
+}
+
+.task-priority-level {
+  color: var(--secondary-text);
+  background-color: var(--accent-color);
+  height: 40px;
+  width: 35%;
+  padding-left: 17px;
+  padding-right: 17px;
+  margin-bottom: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--secondary-radius);
+  cursor: pointer;
+}
+
+.create-task {
+  background-color: var(--primary-text);
+  color: var(--accent-color);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  height: 2.75rem;
+  width: 95%;
+  border: none;
+  border-radius: var(--secondary-radius);
+  cursor: pointer;
+  transition: var(--ease-in-out);
+}
+
+.create-task:hover {
+  background-color: var(--secondary-text);
+}
+
+.modal-overlay {
+  background: rgba(30, 32, 34, 0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+.modal-title {
+  font-size: 30px;
+  text-align: center;
+}
+
 .footer {
-  color: black;
-  font-family: var(--nunito-sans);
+  color: var(--secondary-text);
   font-size: 11px;
   text-align: center;
   position: absolute;
-  bottom: 5px;
+  bottom: -85px;
   left: 0;
   right: 0;
 }
 
 .footer a {
-  color: black;
+  color: var(--secondary-text);
 }
 
 .footer a:visited {
-  color: black;
+  color: var(--secondary-text);
 }
 
 @keyframes fadeIn {
