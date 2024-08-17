@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Task Stats
 
-  const pendingNumber = document.querySelector(".pending-number");
-  const completedNumber = document.querySelector(".completed-number");
-  const dailyGoalNumber = document.querySelector(".daily-goal-number");
+  const pendingTasksNumber = document.querySelector(".pending-number");
+  const completedTasksNumber = document.querySelector(".completed-number");
+  const dailyGoalTasksNumber = document.querySelector(".daily-goal-number");
   const tasksContainer = document.querySelector(".tasks-container");
 
   // Creating a task fields
@@ -143,15 +143,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
       userNewTask.displayTask();
       storedTasks.myTasks.push(userNewTask);
-
+      displayTaskStats.taskStats();
       hideModalModule.hideModal();
     }
 
     return { addNewTask };
   })();
 
-  createTask.addEventListener("click", createTasks.addNewTask);
+  const displayTaskStats = (function () {
+    function taskStats() {
+      pendingTasksNumber.textContent = `${storedTasks.myTasks.length}`;
+    }
 
+    return { taskStats };
+  })();
+
+  createTask.addEventListener("click", createTasks.addNewTask);
   addTask.addEventListener("click", displayModalModule.showModal);
   modalOverlay.addEventListener("click", hideModalModule.hideModal);
 });
