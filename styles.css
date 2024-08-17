@@ -201,11 +201,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 650px;
-  width: 425px;
-  padding: 45px 40px 45px 40px;
+  height: 515px;
+  width: 600px;
+  padding: 20px 30px 20px 50px;
   position: fixed;
-  top: 12%;
+  top: 15%;
   z-index: 2;
   background-color: var(--hover-color);
   border-radius: var(--border-radius);
@@ -217,7 +217,7 @@ body {
   color: var(--primary-text);
   font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .modal.visible {
@@ -228,23 +228,27 @@ body {
 .task-description-container,
 .task-due-date-container,
 .task-priority-container {
-  margin: 1rem 0rem 1rem 0rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  width: 95%;
+  margin: 0.75rem 0rem 0.75rem 0rem;
 }
 
 .input-title {
   color: var(--primary-text);
   font-size: 1.25rem;
   font-weight: 600;
-  margin-bottom: 1rem;
 }
 
 .task-title-input,
 .task-description-input,
 .task-due-date-input {
   color: var(--secondary-text);
-  background-color: var(--accent-color);
+  background-color: var(--background-color);
   height: 2.5rem;
-  width: 95%;
+  width: 60%;
   font-size: 1rem;
   font-weight: 500;
   border: none;
@@ -263,12 +267,11 @@ body {
 
 .task-priority-level {
   color: var(--secondary-text);
-  background-color: var(--accent-color);
+  background-color: var(--background-color);
   height: 40px;
   width: 35%;
   padding-left: 17px;
   padding-right: 17px;
-  margin-bottom: 30px;
   font-size: 16px;
   font-weight: 500;
   border: none;
@@ -277,13 +280,14 @@ body {
 }
 
 .create-task {
-  background-color: var(--primary-text);
+  background-color: var(--background-color);
   color: var(--accent-color);
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.7px;
   height: 2.75rem;
   width: 95%;
+  margin-top: 3rem;
   border: none;
   border-radius: var(--secondary-radius);
   cursor: pointer;
@@ -291,7 +295,7 @@ body {
 }
 
 .create-task:hover {
-  background-color: var(--secondary-text);
+  color: var(--secondary-text);
 }
 
 .modal-overlay {
