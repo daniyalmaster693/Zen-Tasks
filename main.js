@@ -98,6 +98,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       svg.appendChild(circle);
 
+      const taskLeftSideContainer = document.createElement("div");
+      taskLeftSideContainer.classList.add("task-left-side");
+
       const displayedTaskContent = document.createElement("div");
       displayedTaskContent.classList.add("task-content");
 
@@ -108,6 +111,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const displayedTaskDescription = document.createElement("p");
       displayedTaskDescription.classList.add("task-description");
       displayedTaskDescription.textContent = `${this.description}`;
+
+      const taskRightSideContainer = document.createElement("div");
+      taskRightSideContainer.classList.add("task-right-side");
 
       const displayedTaskDate = document.createElement("div");
       displayedTaskDate.classList.add("task-date");
@@ -122,13 +128,17 @@ document.addEventListener("DOMContentLoaded", () => {
       tasksContainer.appendChild(displayedTask);
       tasksContainer.appendChild(displayedTaskHr);
 
-      displayedTask.appendChild(svg);
-      displayedTask.appendChild(displayedTaskContent);
-      displayedTask.appendChild(displayedTaskDate);
+      displayedTask.appendChild(taskLeftSideContainer);
+      displayedTask.appendChild(taskRightSideContainer);
+
+      taskLeftSideContainer.appendChild(displayedTaskContent);
+      taskLeftSideContainer.appendChild(svg);
+      taskLeftSideContainer.appendChild(displayedTaskContent);
 
       displayedTaskContent.appendChild(displayedTaskTitle);
       displayedTaskContent.appendChild(displayedTaskDescription);
-      displayedTaskContent.appendChild(displayedTaskDate);
+
+      taskRightSideContainer.appendChild(displayedTaskDate);
       displayedTaskDate.appendChild(displayedTaskDueDate);
     }
   }
@@ -140,9 +150,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const taskDueDate = dueDateInput.value;
 
       const userNewTask = new Task(taskTitle, taskDescription, taskDueDate);
-
       userNewTask.displayTask();
       storedTasks.myTasks.push(userNewTask);
+
       displayTaskStats.taskStats();
       hideModalModule.hideModal();
     }

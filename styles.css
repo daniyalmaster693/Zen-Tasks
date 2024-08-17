@@ -108,12 +108,18 @@ body {
   justify-content: flex-start;
   align-items: center;
   width: 800px;
-  height: 125px;
-  gap: 2.35rem;
+  height: 90px;
+  gap: 26.35rem;
   border-radius: 1rem;
   margin-bottom: 0.25rem;
   cursor: pointer;
   transition: var(--ease-in-out);
+}
+
+.task-left-side,
+.task-right-side {
+  display: flex;
+  align-items: center;
 }
 
 .task-check {
@@ -126,6 +132,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: 35px;
+  width: 200px;
+}
+
+.task-date {
+  width: 200px;
 }
 
 .task-title {
