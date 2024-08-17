@@ -201,9 +201,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 700px;
+  height: 650px;
   width: 425px;
-  padding: 50px 40px 50px 40px;
+  padding: 45px 40px 45px 40px;
   position: fixed;
   top: 12%;
   z-index: 2;
