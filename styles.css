@@ -175,14 +175,15 @@ body {
 
 .add-task-button {
   color: var(--primary-text);
+  background-color: var(--primary-black);
   font-size: 1rem;
   font-weight: 500;
   height: 40px;
   width: 150px;
   border: none;
+  margin-bottom: 3rem;
   border-radius: var(--border-radius);
   outline: 1px solid var(--accent-color);
-  background-color: var(--primary-black);
   cursor: pointer;
   transition: var(--ease-in-out);
 }
@@ -203,9 +204,9 @@ body {
   justify-content: center;
   height: 515px;
   width: 600px;
-  padding: 20px 30px 20px 50px;
+  padding: 20px 25px 20px 45px;
   position: fixed;
-  top: 15%;
+  top: 17%;
   z-index: 2;
   background-color: var(--hover-color);
   border-radius: var(--border-radius);
@@ -318,24 +319,6 @@ body {
 .modal-title {
   font-size: 30px;
   text-align: center;
-}
-
-.footer {
-  color: var(--secondary-text);
-  font-size: 11px;
-  text-align: center;
-  position: absolute;
-  bottom: -85px;
-  left: 0;
-  right: 0;
-}
-
-.footer a {
-  color: var(--secondary-text);
-}
-
-.footer a:visited {
-  color: var(--secondary-text);
 }
 
 @keyframes fadeIn {
