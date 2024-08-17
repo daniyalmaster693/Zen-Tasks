@@ -99,17 +99,20 @@ body {
   font-size: 1.5rem;
   font-weight: 500;
   text-align: left;
+  width: 800px;
   margin-bottom: 1.5rem;
 }
 
 .task {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 800px;
-  height: 60px;
+  height: 125px;
+  gap: 2.35rem;
   border-radius: 1rem;
   margin-bottom: 0.25rem;
+  cursor: pointer;
   transition: var(--ease-in-out);
 }
 
@@ -119,19 +122,34 @@ body {
   cursor: pointer;
 }
 
+.task-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .task-title {
   color: var(--primary-text);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 400;
   line-height: 1.5em;
 }
 
-.date {
+.task-description {
   color: var(--secondary-text);
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.5em;
+  margin-top: 5px;
+}
+
+.date {
+  color: #90a9b9;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5em;
   letter-spacing: 0.023rem;
+  margin-top: 20px;
 }
 
 .task-hr {
@@ -194,10 +212,10 @@ body {
   transform: scale(1);
 }
 
-.task-title,
-.task-description,
-.task-due-date,
-.task-priority {
+.task-title-container,
+.task-description-container,
+.task-due-date-container,
+.task-priority-container {
   margin: 1rem 0rem 1rem 0rem;
 }
 

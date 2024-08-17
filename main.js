@@ -4,16 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const pendingNumber = document.querySelector(".pending-number");
   const completedNumber = document.querySelector(".completed-number");
   const dailyGoalNumber = document.querySelector(".daily-goal-number");
-
-  // Tasks Container
-
   const tasksContainer = document.querySelector(".tasks-container");
 
   // Creating a task fields
 
-  const taskTitle = document.querySelector(".task-title-input");
-  const taskDescription = document.querySelector(".task-description-input");
-  const taskDueDate = document.querySelector(".task-due-date-input");
+  const titleInput = document.querySelector(".task-title-input");
+  const descriptionInput = document.querySelector(".task-description-input");
+  const dueDateInput = document.querySelector(".task-due-date-input");
   const taskPriorityLevel = document.querySelector(".task-priority-level");
   const createTask = document.querySelector(".create-task");
 
@@ -23,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalOverlay = document.querySelector(".modal-overlay");
   const addTask = document.querySelector(".add-task-button");
 
-  // Modal Modules
+  // Displaying Modals
 
   const displayModalModule = (function () {
     function showModal() {
@@ -60,6 +57,100 @@ document.addEventListener("DOMContentLoaded", () => {
       keyboardCloseModal,
     };
   })();
+
+  // Creating Tasks
+
+  const storedTasks = (function () {
+    const myTasks = [];
+    return { myTasks };
+  })();
+
+  class Task {
+    constructor(title, description, dueDate, priority) {
+      this.title = title;
+      this.description = description;
+      this.dueDate = dueDate;
+      this.priority = priority;
+    }
+
+    displayTask() {
+      const displayedTask = document.createElement("div");
+      displayedTask.classList.add("task");
+
+      const svgNamespace = "http://www.w3.org/2000/svg";
+      const svg = document.createElementNS(svgNamespace, "svg");
+      svg.classList.add("task-check");
+
+      svg.setAttribute("class", "task-check");
+      svg.setAttribute("width", "24");
+      svg.setAttribute("height", "24");
+      svg.setAttribute("viewBox", "0 0 24 24");
+      svg.setAttribute("fill", "none");
+      svg.setAttribute("stroke", "#f0f5f9");
+      svg.setAttribute("stroke-width", "2");
+      svg.setAttribute("stroke-linecap", "round");
+      svg.setAttribute("stroke-linejoin", "round");
+
+      const circle = document.createElementNS(svgNamespace, "circle");
+      circle.setAttribute("cx", "12");
+      circle.setAttribute("cy", "12");
+      circle.setAttribute("r", "10");
+
+      svg.appendChild(circle);
+
+      const displayedTaskContent = document.createElement("div");
+      displayedTaskContent.classList.add("task-content");
+
+      const displayedTaskTitle = document.createElement("h2");
+      displayedTaskTitle.classList.add("task-title");
+      displayedTaskTitle.textContent = `${this.title}`;
+
+      const displayedTaskDescription = document.createElement("p");
+      displayedTaskDescription.classList.add("task-description");
+      displayedTaskDescription.textContent = `${this.description}`;
+
+      const displayedTaskDate = document.createElement("div");
+      displayedTaskDate.classList.add("task-date");
+
+      const displayedTaskDueDate = document.createElement("p");
+      displayedTaskDueDate.classList.add("date");
+      displayedTaskDueDate.textContent = `${this.dueDate}`;
+
+      const displayedTaskHr = document.createElement("hr");
+      displayedTaskHr.classList.add("task-hr");
+
+      tasksContainer.appendChild(displayedTask);
+      tasksContainer.appendChild(displayedTaskHr);
+
+      displayedTask.appendChild(svg);
+      displayedTask.appendChild(displayedTaskContent);
+      displayedTask.appendChild(displayedTaskDate);
+
+      displayedTaskContent.appendChild(displayedTaskTitle);
+      displayedTaskContent.appendChild(displayedTaskDescription);
+      displayedTaskContent.appendChild(displayedTaskDate);
+      displayedTaskDate.appendChild(displayedTaskDueDate);
+    }
+  }
+
+  const createTasks = (function () {
+    function addNewTask() {
+      const taskTitle = titleInput.value;
+      const taskDescription = descriptionInput.value;
+      const taskDueDate = dueDateInput.value;
+
+      const userNewTask = new Task(taskTitle, taskDescription, taskDueDate);
+
+      userNewTask.displayTask();
+      storedTasks.myTasks.push(userNewTask);
+
+      hideModalModule.hideModal();
+    }
+
+    return { addNewTask };
+  })();
+
+  createTask.addEventListener("click", createTasks.addNewTask);
 
   addTask.addEventListener("click", displayModalModule.showModal);
   modalOverlay.addEventListener("click", hideModalModule.hideModal);
