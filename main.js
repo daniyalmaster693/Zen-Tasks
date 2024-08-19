@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const modal = document.querySelector(".modal");
   const modalOverlay = document.querySelector(".modal-overlay");
+  const taskTitleInput = document.querySelector(".task-title-input");
+  const inputError = document.querySelector(".input-error");
   const addTask = document.querySelector(".add-task-button");
 
   // Displaying Modals
@@ -166,6 +168,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const createTasks = (function () {
     function addNewTask() {
+      const errors = displayInputErrors.displayErrors();
+      if (errors) {
+        return;
+      }
+
       const taskTitle = titleInput.value;
       const taskDescription = descriptionInput.value;
       const taskDueDate = dueDateInput.value;
@@ -201,7 +208,28 @@ document.addEventListener("DOMContentLoaded", () => {
     return { taskStats };
   })();
 
+  const displayInputErrors = (function () {
+    function displayErrors() {
+      let errors = false;
+
+      if (taskTitleInput.value === "") {
+        taskTitleInput.classList.add("error");
+        inputError.style.opacity = "1";
+        errors = true;
+      } else {
+        taskTitleInput.classList.remove("error");
+        inputError.style.opacity = "0";
+        errors = false;
+      }
+
+      return errors;
+    }
+
+    return { displayErrors };
+  })();
+
   createTask.addEventListener("click", createTasks.addNewTask);
   addTask.addEventListener("click", displayModalModule.showModal);
+  taskTitleInput.addEventListener("click", displayInputErrors.displayErrors);
   modalOverlay.addEventListener("click", hideModalModule.hideModal);
 });

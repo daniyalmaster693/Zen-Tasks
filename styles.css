@@ -9,6 +9,7 @@
   --accent-color: #52616b;
   --border-color: #202123;
   --border-radius: 0.625rem;
+  --red: #e66063;
   --hr: 1px solid #35353b;
   --secondary-radius: 0.4375rem;
   --fadeIn: 0.5s forwards ease;
@@ -38,6 +39,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.tasks-top {
   margin-top: 100px;
 }
 
@@ -257,6 +261,22 @@ body {
   color: var(--primary-text);
   font-size: 1.25rem;
   font-weight: 600;
+}
+
+.input-error {
+  color: var(--red);
+  font-size: 0.7rem;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  position: relative;
+  left: 376px;
+  opacity: 0;
+  transition: var(--ease-in-out);
+}
+
+.task-title-input.error {
+  border: 2px solid var(--red);
 }
 
 .task-title-input,
