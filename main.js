@@ -115,12 +115,26 @@ document.addEventListener("DOMContentLoaded", () => {
       const taskRightSideContainer = document.createElement("div");
       taskRightSideContainer.classList.add("task-right-side");
 
-      const displayedTaskDate = document.createElement("div");
-      displayedTaskDate.classList.add("task-date");
-
       const displayedTaskDueDate = document.createElement("p");
       displayedTaskDueDate.classList.add("date");
       displayedTaskDueDate.textContent = `${this.dueDate}`;
+
+      const displayedTaskActions = document.createElement("div");
+      displayedTaskActions.classList.add("task-actions");
+
+      const editTaskButton = document.createElement("button");
+      editTaskButton.classList.add("edit-task");
+
+      const pencilIcon = document.createElement("img");
+      pencilIcon.src = "/Odin Project/Zen-Tasks/Assets/Edit.svg";
+      pencilIcon.alt = "Pencil Icon";
+
+      const deleteTaskButton = document.createElement("button");
+      deleteTaskButton.classList.add("delete-task");
+
+      const trashIcon = document.createElement("img");
+      trashIcon.src = "/Odin Project/Zen-Tasks/Assets/Trash.svg";
+      trashIcon.alt = "Trash Icon";
 
       const displayedTaskHr = document.createElement("hr");
       displayedTaskHr.classList.add("task-hr");
@@ -138,8 +152,15 @@ document.addEventListener("DOMContentLoaded", () => {
       displayedTaskContent.appendChild(displayedTaskTitle);
       displayedTaskContent.appendChild(displayedTaskDescription);
 
-      taskRightSideContainer.appendChild(displayedTaskDate);
-      displayedTaskDate.appendChild(displayedTaskDueDate);
+      taskRightSideContainer.appendChild(displayedTaskDueDate);
+      taskRightSideContainer.appendChild(displayedTaskActions);
+
+      displayedTaskActions.appendChild(editTaskButton);
+      displayedTaskActions.appendChild(deleteTaskButton);
+
+      editTaskButton.appendChild(pencilIcon);
+      deleteTaskButton.appendChild(trashIcon);
+      deleteTaskButton.addEventListener("click", deleteTask.deleteNewTask);
     }
   }
 
@@ -158,6 +179,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     return { addNewTask };
+  })();
+
+  const deleteTask = (function () {
+    function deleteNewTask() {
+      const taskIndex = storedTasks.myTasks.indexOf(event.target, 0);
+      storedTasks.myTasks.splice(taskIndex, 1);
+      const taskNode = event.target.closest(".task");
+      taskNode.remove();
+      displayTaskStats.taskStats();
+    }
+
+    return { deleteNewTask };
   })();
 
   const displayTaskStats = (function () {
