@@ -144,6 +144,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const displayedTask = document.createElement("div");
       displayedTask.classList.add("task");
 
+      const taskInformation = document.createElement("div");
+      taskInformation.classList.add("task-information");
+
       const svgNamespace = "http://www.w3.org/2000/svg";
       const svg = document.createElementNS(svgNamespace, "svg");
       svg.classList.add("task-check");
@@ -203,14 +206,20 @@ document.addEventListener("DOMContentLoaded", () => {
       trashIcon.src = "/Odin Project/Zen-Tasks/Assets/Trash.svg";
       trashIcon.alt = "Trash Icon";
 
-      // const displayedTaskHr = document.createElement("hr");
-      // displayedTaskHr.classList.add("task-hr");
+      const hrContainer = document.createElement("div");
+      hrContainer.classList.add("hr-container");
+
+      const displayedTaskHr = document.createElement("hr");
+      displayedTaskHr.classList.add("task-hr");
 
       tasksContainer.appendChild(displayedTask);
-      // tasksContainer.appendChild(displayedTaskHr);
+      hrContainer.appendChild(displayedTaskHr);
 
-      displayedTask.appendChild(taskLeftSideContainer);
-      displayedTask.appendChild(taskRightSideContainer);
+      displayedTask.appendChild(taskInformation);
+      displayedTask.appendChild(hrContainer);
+
+      taskInformation.appendChild(taskLeftSideContainer);
+      taskInformation.appendChild(taskRightSideContainer);
 
       taskLeftSideContainer.appendChild(displayedTaskContent);
       taskLeftSideContainer.appendChild(svg);

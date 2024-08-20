@@ -107,7 +107,7 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.task {
+.task-information {
   display: flex;
   justify-content: flex-start;
   align-items: center;
