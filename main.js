@@ -14,13 +14,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const taskPriorityLevel = document.querySelector(".task-priority-level");
   const createTask = document.querySelector(".create-task");
 
-  //  Modal
+  // Add Task Modal
 
   const modal = document.querySelector(".modal");
   const modalOverlay = document.querySelector(".modal-overlay");
-  const taskTitleInput = document.querySelector(".task-title-input");
   const inputError = document.querySelector(".input-error");
   const addTask = document.querySelector(".add-task-button");
+
+  // Edit Modal
+
+  const editModal = document.querySelector(".edit-modal");
+  const editModalOverlay = document.querySelector(".edit-modal-overlay");
 
   // Displaying Modals
 
@@ -58,6 +62,59 @@ document.addEventListener("DOMContentLoaded", () => {
       hideModal,
       keyboardCloseModal,
     };
+  })();
+
+  const displayEditModalModule = (function () {
+    function showModal() {
+      editModal.classList.add("visible");
+      editModalOverlay.classList.remove("hidden");
+
+      document.addEventListener(
+        "keydown",
+        hideEditModalModule.keyboardCloseModal
+      );
+
+      editTask.editNewTask();
+    }
+
+    return {
+      showModal,
+    };
+  })();
+
+  const hideEditModalModule = (function () {
+    function hideModal() {
+      editModal.classList.remove("visible");
+      editModalOverlay.classList.add("hidden");
+
+      document.removeEventListener("keydown", keyboardCloseModal);
+    }
+
+    function keyboardCloseModal() {
+      const key = event.key;
+      if (key === "Escape") {
+        hideModal();
+      }
+    }
+
+    hideModal();
+
+    return {
+      hideModal,
+      keyboardCloseModal,
+    };
+  })();
+
+  const clearModalModule = (function () {
+    function clearModal() {
+      titleInput.value = "";
+      descriptionInput.value = "";
+      dueDateInput.value = "";
+      taskPriorityLevel.selectedIndex = 3;
+      inputError.opacity = "0";
+    }
+
+    return { clearModal };
   })();
 
   // Creating Tasks
@@ -161,6 +218,11 @@ document.addEventListener("DOMContentLoaded", () => {
       displayedTaskActions.appendChild(deleteTaskButton);
 
       editTaskButton.appendChild(pencilIcon);
+      editTaskButton.addEventListener(
+        "click",
+        displayEditModalModule.showModal
+      );
+
       deleteTaskButton.appendChild(trashIcon);
       deleteTaskButton.addEventListener("click", deleteTask.deleteNewTask);
     }
@@ -182,7 +244,10 @@ document.addEventListener("DOMContentLoaded", () => {
       storedTasks.myTasks.push(userNewTask);
 
       displayTaskStats.taskStats();
+      displayInputErrors.displayErrors();
       hideModalModule.hideModal();
+      clearModalModule.clearModal();
+      console.log(storedTasks.myTasks);
     }
 
     return { addNewTask };
@@ -212,12 +277,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function displayErrors() {
       let errors = false;
 
-      if (taskTitleInput.value === "") {
-        taskTitleInput.classList.add("error");
+      if (titleInput.value === "") {
+        titleInput.classList.add("error");
         inputError.style.opacity = "1";
         errors = true;
       } else {
-        taskTitleInput.classList.remove("error");
+        titleInput.classList.remove("error");
         inputError.style.opacity = "0";
         errors = false;
       }
@@ -230,6 +295,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   createTask.addEventListener("click", createTasks.addNewTask);
   addTask.addEventListener("click", displayModalModule.showModal);
-  taskTitleInput.addEventListener("click", displayInputErrors.displayErrors);
   modalOverlay.addEventListener("click", hideModalModule.hideModal);
+  editModalOverlay.addEventListener("click", hideEditModalModule.hideModal);
 });

@@ -108,6 +108,45 @@
       <div class="modal-overlay"></div>
     </section>
 
+
+    <section class="edit-task-modal">
+      <div class="edit-modal">
+        <h2 class="modal-title">Edit Task</h2>
+
+        <p class="input-error">*This field is required</p>
+        <div class="task-title-container">
+          <p class="input-title">Title</p>
+          <input type="text" class="task-title-input" minlength="1" placeholder="Task Title">
+        </div>
+
+        <div class="task-description-container">
+          <p class="input-title">Description</p>
+          <input type="text" class="task-description-input" minlength="1" placeholder="Task Description">
+        </div>
+
+
+        <div class="task-due-date-container">
+          <p class="input-title">Due Date</p>
+          <input type="text" class="task-due-date-input" minlength="1" placeholder="Task Date">
+        </div>
+
+        <div class="task-priority-container">
+          <p class="input-title">Priority</p>
+
+          <select name="priority-level" class="task-priority-level">
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+            <option value="None" selected>None</option>
+          </select>
+        </div>
+
+        <button class="edit-task-button">Edit Task</button>
+      </div>
+
+      <div class="edit-modal-overlay"></div>
+    </section>
+
     <section class="add-task">
       <button class="add-task-button">+ Add Task</button>
     </section>
