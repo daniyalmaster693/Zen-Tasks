@@ -284,8 +284,11 @@ body {
 }
 
 .task-title-input,
+.edit-task-title-input,
 .task-description-input,
-.task-due-date-input {
+.edit-task-description-input,
+.task-due-date-input,
+.edit-task-due-date-input {
   color: var(--secondary-text);
   background-color: var(--background-color);
   height: 2.5rem;
@@ -298,8 +301,11 @@ body {
 }
 
 .task-title-input:focus,
+.edit-task-title-input:focus,
 .task-description-input:focus,
-.task-due-date-input:focus {
+.edit-task-description-input:focus,
+.task-due-date-input:focus,
+.edit-task-due-date-input:focus {
   color: var(--secondary-text);
   font-size: 1rem;
   font-weight: 500;

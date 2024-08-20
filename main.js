@@ -21,6 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputError = document.querySelector(".input-error");
   const addTask = document.querySelector(".add-task-button");
 
+  // Editing a task fields
+
+  const editTitleInput = document.querySelector(".edit-task-title-input");
+  const editDescriptionInput = document.querySelector(
+    ".edit-task-description-input"
+  );
+  const editDueDateInput = document.querySelector(".edit-task-due-date-input");
+
   // Edit Modal
 
   const editModal = document.querySelector(".edit-modal");
@@ -263,6 +271,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     return { deleteNewTask };
+  })();
+
+  const editTask = (function () {
+    function editNewTask() {
+      const taskIndex = storedTasks.myTasks.indexOf(event.target, 0);
+
+      editTitleInput.value = `${storedTasks.myTasks[0].title}`;
+      editDescriptionInput.value = `${storedTasks.myTasks[0].description}`;
+      editDueDateInput.value = `${storedTasks.myTasks[0].dueDate}`;
+
+      // Add priority
+    }
+
+    return { editNewTask };
   })();
 
   const displayTaskStats = (function () {
