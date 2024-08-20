@@ -203,11 +203,11 @@ document.addEventListener("DOMContentLoaded", () => {
       trashIcon.src = "/Odin Project/Zen-Tasks/Assets/Trash.svg";
       trashIcon.alt = "Trash Icon";
 
-      const displayedTaskHr = document.createElement("hr");
-      displayedTaskHr.classList.add("task-hr");
+      // const displayedTaskHr = document.createElement("hr");
+      // displayedTaskHr.classList.add("task-hr");
 
       tasksContainer.appendChild(displayedTask);
-      tasksContainer.appendChild(displayedTaskHr);
+      // tasksContainer.appendChild(displayedTaskHr);
 
       displayedTask.appendChild(taskLeftSideContainer);
       displayedTask.appendChild(taskRightSideContainer);
@@ -255,7 +255,6 @@ document.addEventListener("DOMContentLoaded", () => {
       displayInputErrors.displayErrors();
       hideModalModule.hideModal();
       clearModalModule.clearModal();
-      console.log(storedTasks.myTasks);
     }
 
     return { addNewTask };
@@ -275,16 +274,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const editTask = (function () {
     function editNewTask() {
-      const taskIndex = storedTasks.myTasks.indexOf(event.target, 0);
+      const taskContainerIndex = tasksContainer.children;
+      const taskIndexList = Array.from(taskContainerIndex);
+      9;
 
-      editTitleInput.value = `${storedTasks.myTasks[0].title}`;
-      editDescriptionInput.value = `${storedTasks.myTasks[0].description}`;
-      editDueDateInput.value = `${storedTasks.myTasks[0].dueDate}`;
+      const taskNode = event.target.closest(".task");
+      const clickedTaskIndex = taskIndexList.indexOf(taskNode);
+      const currentTaskIndex = clickedTaskIndex - 1;
+
+      editTitleInput.value = `${storedTasks.myTasks[currentTaskIndex].title}`;
+      editDescriptionInput.value = `${storedTasks.myTasks[currentTaskIndex].description}`;
+      editDueDateInput.value = `${storedTasks.myTasks[currentTaskIndex].dueDate}`;
 
       // Add priority
     }
 
     return { editNewTask };
+  })();
+
+  const calculateIndex = (function () {
+    function calculateTaskIndex(task) {
+      return task.classList.contains(".task");
+    }
+
+    return { calculateTaskIndex };
   })();
 
   const displayTaskStats = (function () {
