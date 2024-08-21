@@ -10,6 +10,9 @@
   --border-color: #202123;
   --border-radius: 0.625rem;
   --red: #e66063;
+  --orange: #e69860;
+  --blue: #4987ff;
+  --grey: #b1b1b1;
   --hr: 1px solid #35353b;
   --secondary-radius: 0.4375rem;
   --fadeIn: 0.5s forwards ease;
@@ -68,7 +71,7 @@ body {
   align-items: center;
   gap: 10px;
   height: 125px;
-  width: 255px;
+  width: 265px;
   background-color: var(--hover-color);
   border-radius: var(--border-radius);
 }
@@ -96,6 +99,7 @@ body {
   flex-direction: column;
   justify-content: center;
   margin-top: 75px;
+  width: 821px;
 }
 
 .tasks-container-title {
@@ -125,10 +129,36 @@ body {
   align-items: center;
 }
 
+.complete-task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+  border: none;
+  background-color: transparent;
+}
+
 .task-check {
   height: 22px;
   width: 22px;
   cursor: pointer;
+}
+
+.task-check.high-priority {
+  stroke: var(--red);
+}
+
+.task-check.medium-priority {
+  stroke: var(--orange);
+}
+
+.task-check.low-priority {
+  stroke: var(--blue);
+}
+
+.task-check.no-priority {
+  stroke: var(--grey);
 }
 
 .task-content {
@@ -185,7 +215,7 @@ body {
 }
 
 .task-hr {
-  width: 50em;
+  width: 51.35rem;
   border: var(--hr);
 }
 

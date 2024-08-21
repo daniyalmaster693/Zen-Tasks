@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         hideEditModalModule.keyboardCloseModal
       );
 
-      editTask.editNewTask();
+      editTask.editNewTaskDisplay();
     }
 
     return {
@@ -146,6 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const taskInformation = document.createElement("div");
       taskInformation.classList.add("task-information");
+
+      const completeTaskButton = document.createElement("complete-task");
+      completeTaskButton.classList.add("complete-task");
 
       const svgNamespace = "http://www.w3.org/2000/svg";
       const svg = document.createElementNS(svgNamespace, "svg");
@@ -222,9 +225,10 @@ document.addEventListener("DOMContentLoaded", () => {
       taskInformation.appendChild(taskRightSideContainer);
 
       taskLeftSideContainer.appendChild(displayedTaskContent);
-      taskLeftSideContainer.appendChild(svg);
+      taskLeftSideContainer.appendChild(completeTaskButton);
       taskLeftSideContainer.appendChild(displayedTaskContent);
 
+      completeTaskButton.appendChild(svg);
       displayedTaskContent.appendChild(displayedTaskTitle);
       displayedTaskContent.appendChild(displayedTaskDescription);
 
@@ -282,7 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
   })();
 
   const editTask = (function () {
-    function editNewTask() {
+    function editNewTaskDisplay() {
       const taskContainerIndex = tasksContainer.children;
       const taskIndexList = Array.from(taskContainerIndex);
       9;
@@ -294,19 +298,9 @@ document.addEventListener("DOMContentLoaded", () => {
       editTitleInput.value = `${storedTasks.myTasks[currentTaskIndex].title}`;
       editDescriptionInput.value = `${storedTasks.myTasks[currentTaskIndex].description}`;
       editDueDateInput.value = `${storedTasks.myTasks[currentTaskIndex].dueDate}`;
-
-      // Add priority
     }
 
-    return { editNewTask };
-  })();
-
-  const calculateIndex = (function () {
-    function calculateTaskIndex(task) {
-      return task.classList.contains(".task");
-    }
-
-    return { calculateTaskIndex };
+    return { editNewTaskDisplay };
   })();
 
   const displayTaskStats = (function () {
