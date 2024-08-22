@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const pendingTasksNumber = document.querySelector(".pending-number");
   const completedTasksNumber = document.querySelector(".completed-number");
-  const dailyGoalTasksNumber = document.querySelector(".daily-goal-number");
+  const dailyTasksNumber = document.querySelector(".daily-tasks-number");
   const tasksContainer = document.querySelector(".tasks-container");
 
   // Creating a task fields
@@ -33,6 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const editModal = document.querySelector(".edit-modal");
   const editModalOverlay = document.querySelector(".edit-modal-overlay");
+  const editTaskButton = document.querySelector(".edit-task-button");
+
+  // Other
+
+  const completedSectionCount = document.querySelector(
+    "completed-section-tasks-count"
+  );
 
   // Displaying Modals
 
@@ -82,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         hideEditModalModule.keyboardCloseModal
       );
 
-      editTask.editNewTaskDisplay();
+      editTask.editTaskDisplay();
     }
 
     return {
@@ -132,6 +139,11 @@ document.addEventListener("DOMContentLoaded", () => {
     return { myTasks };
   })();
 
+  const storedFinishedTasks = (function () {
+    const finishedTasks = [];
+    return { finishedTasks };
+  })();
+
   class Task {
     constructor(title, description, dueDate, priority) {
       this.title = title;
@@ -147,8 +159,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const taskInformation = document.createElement("div");
       taskInformation.classList.add("task-information");
 
-      const completeTaskButton = document.createElement("complete-task");
+      const completeTaskButton = document.createElement("button");
       completeTaskButton.classList.add("complete-task");
+      completeTaskButton.addEventListener(
+        "click",
+        completeTask.completeNewTask
+      );
 
       const svgNamespace = "http://www.w3.org/2000/svg";
       const svg = document.createElementNS(svgNamespace, "svg");
@@ -286,7 +302,12 @@ document.addEventListener("DOMContentLoaded", () => {
   })();
 
   const editTask = (function () {
-    function editNewTaskDisplay() {
+    function editTaskDisplay() {
+      const errors = displayInputErrors.displayErrors();
+      if (errors) {
+        return;
+      }
+
       const taskContainerIndex = tasksContainer.children;
       const taskIndexList = Array.from(taskContainerIndex);
       9;
@@ -300,12 +321,45 @@ document.addEventListener("DOMContentLoaded", () => {
       editDueDateInput.value = `${storedTasks.myTasks[currentTaskIndex].dueDate}`;
     }
 
-    return { editNewTaskDisplay };
+    return { editTaskDisplay };
+  })();
+
+  // const updateExistingTask = (function () {
+  //   function updateTask() {
+  //     const editTaskTitle = editTitleInput.value;
+  //     const editTaskDescription = editDescriptionInput.value;
+  //     const editTaskDueDate = editDueDateInput.value;
+
+  //     storedTasks.myTasks[0].title = editTaskTitle;
+  //     storedTasks.myTasks[0].description = editTaskDescription;
+  //     storedTasks.myTasks[0].dueDate = editTaskDueDate;
+  //     console.log(storedTasks.myTasks);
+
+  //     hideEditModalModule.hideModal();
+  //   }
+
+  //   return { updateTask };
+  // })();
+
+  const completeTask = (function () {
+    function completeNewTask() {
+      const taskIndex = storedTasks.myTasks.indexOf(event.target, 0);
+      storedTasks.myTasks.splice(taskIndex, 1);
+      const taskNode = event.target.closest(".task");
+      storedFinishedTasks.finishedTasks.push(taskNode);
+      console.log(storedFinishedTasks.finishedTasks);
+
+      taskNode.remove();
+      displayTaskStats.taskStats();
+    }
+
+    return { completeNewTask };
   })();
 
   const displayTaskStats = (function () {
     function taskStats() {
       pendingTasksNumber.textContent = `${storedTasks.myTasks.length}`;
+      completedTasksNumber.textContent = `${storedFinishedTasks.finishedTasks.length}`;
     }
 
     return { taskStats };
@@ -333,6 +387,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   createTask.addEventListener("click", createTasks.addNewTask);
   addTask.addEventListener("click", displayModalModule.showModal);
+  // editTaskButton.addEventListener("click", updateExistingTask.updateTask);
   modalOverlay.addEventListener("click", hideModalModule.hideModal);
   editModalOverlay.addEventListener("click", hideEditModalModule.hideModal);
 });
