@@ -35,6 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const editModalOverlay = document.querySelector(".edit-modal-overlay");
   const editTaskButton = document.querySelector(".edit-task-button");
 
+  // Dock
+
   // Other
 
   const completedSectionCount = document.querySelector(
