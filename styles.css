@@ -500,7 +500,6 @@ body {
 
 .main-container-completed {
   display: none;
-  /* display: flex; */
   flex-direction: column;
   justify-content: center;
   align-items: center;

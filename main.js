@@ -37,8 +37,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Dock
 
+  const homeButton = document.querySelector(".home-button");
+  const todayButton = document.querySelector(".today-button");
+  const completedButton = document.querySelector(".completed-button");
+  const projectsButton = document.querySelector(".projects-button");
+
   // Other
 
+  const mainContainer = document.querySelector(".main-container");
+  const mainContainerCompleted = document.querySelector(
+    ".main-container-completed"
+  );
   const completedSectionCount = document.querySelector(
     "completed-section-tasks-count"
   );
@@ -132,6 +141,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     return { clearModal };
+  })();
+
+  const showCompletedTasksSection = (function () {
+    function showCompletedSection() {
+      mainContainer.style.display = "none";
+      mainContainerCompleted.style.display = "flex";
+    }
+
+    return { showCompletedSection };
+  })();
+
+  const homeSection = (function () {
+    function showHomeSection() {
+      mainContainer.style.display = "flex";
+      mainContainerCompleted.style.display = "none";
+    }
+
+    return { showHomeSection };
   })();
 
   // Creating Tasks
@@ -305,11 +332,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const editTask = (function () {
     function editTaskDisplay() {
-      const errors = displayInputErrors.displayErrors();
-      if (errors) {
-        return;
-      }
-
       const taskContainerIndex = tasksContainer.children;
       const taskIndexList = Array.from(taskContainerIndex);
       9;
@@ -326,22 +348,32 @@ document.addEventListener("DOMContentLoaded", () => {
     return { editTaskDisplay };
   })();
 
-  // const updateExistingTask = (function () {
-  //   function updateTask() {
-  //     const editTaskTitle = editTitleInput.value;
-  //     const editTaskDescription = editDescriptionInput.value;
-  //     const editTaskDueDate = editDueDateInput.value;
+  const updateExistingTask = (function () {
+    function updateTask() {
+      // Add error checking
 
-  //     storedTasks.myTasks[0].title = editTaskTitle;
-  //     storedTasks.myTasks[0].description = editTaskDescription;
-  //     storedTasks.myTasks[0].dueDate = editTaskDueDate;
-  //     console.log(storedTasks.myTasks);
+      const editTaskTitle = editTitleInput.value;
+      const editTaskDescription = editDescriptionInput.value;
+      const editTaskDueDate = editDueDateInput.value;
 
-  //     hideEditModalModule.hideModal();
-  //   }
+      storedTasks.myTasks[0].title = editTaskTitle;
+      storedTasks.myTasks[0].description = editTaskDescription;
+      storedTasks.myTasks[0].dueDate = editTaskDueDate;
+      console.log(storedTasks.myTasks);
 
-  //   return { updateTask };
-  // })();
+      const taskTitle = document.querySelector(".task-title");
+      const taskDescription = document.querySelector(".task-description");
+      const taskDueDate = document.querySelector(".date");
+
+      taskTitle.textContent = editTaskTitle;
+      taskDescription.textContent = editTaskDescription;
+      taskDueDate.textContent = editTaskDueDate;
+
+      hideEditModalModule.hideModal();
+    }
+
+    return { updateTask };
+  })();
 
   const completeTask = (function () {
     function completeNewTask() {
@@ -387,9 +419,14 @@ document.addEventListener("DOMContentLoaded", () => {
     return { displayErrors };
   })();
 
+  homeButton.addEventListener("click", homeSection.showHomeSection);
+  completedButton.addEventListener(
+    "click",
+    showCompletedTasksSection.showCompletedSection
+  );
   createTask.addEventListener("click", createTasks.addNewTask);
   addTask.addEventListener("click", displayModalModule.showModal);
-  // editTaskButton.addEventListener("click", updateExistingTask.updateTask);
+  editTaskButton.addEventListener("click", updateExistingTask.updateTask);
   modalOverlay.addEventListener("click", hideModalModule.hideModal);
   editModalOverlay.addEventListener("click", hideEditModalModule.hideModal);
 });
