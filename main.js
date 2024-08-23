@@ -16,11 +16,6 @@ import {
 import { createTasks, updateExistingTask } from "./modules/task management.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // homeButton.addEventListener("click", homeSection.showHomeSection);
-  // completedButton.addEventListener(
-  //   "click",
-  //   showCompletedTasksSection.showCompletedSection
-  // );
   createTask.addEventListener("click", createTasks.addNewTask);
   addTask.addEventListener("click", displayModalModule.showModal);
   editTaskButton.addEventListener("click", updateExistingTask.updateTask);
