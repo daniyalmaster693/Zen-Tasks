@@ -15,7 +15,7 @@
   --grey: #b1b1b1;
   --hr: 1px solid #35353b;
   --secondary-radius: 0.4375rem;
-  --fadeIn: 0.5s forwards ease;
+  --fadeIn: fadeIn 1.5s forwards ease-out;
   --ease-in-out: all 0.3s ease-in-out;
 }
 
@@ -35,6 +35,27 @@ body {
   background-color: var(--background-color);
   font-family: var(--Inter);
   min-height: 100vh;
+  transition: opacity 0.4s ease-in-out;
+  animation: var(--fadeIn);
+}
+
+body.fade-out {
+  opacity: 0;
+}
+
+body.fade-in {
+  opacity: 1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .main-container {
@@ -485,17 +506,6 @@ body {
   width: 22px;
 }
 
-@keyframes fadeIn {
-  from {
-    transform: scale(0);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
 /* Completed Section */
 
 .main-container-completed {
@@ -642,8 +652,8 @@ body {
   gap: 10px;
 }
 
-.edit-task img,
-.delete-task img {
+.edit-task-completed img,
+.delete-task-completed img {
   height: 20px;
   width: 20px;
 }

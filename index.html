@@ -10,7 +10,7 @@
   <meta name="Enter page description" content="To Do List App" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" sizes="32x32" href="/Odin Project/Zen-Tasks/Assets/Zen Tasks.png" />
-  <script src="main.js"></script>
+  <script type="module" src="main.js"></script>
   <title>Zen Tasks</title>
 </head>
 
@@ -190,7 +190,7 @@
 
   <section class="main-container-completed">
     <section class="tasks-top-completed">
-      <h1 class="section-title-completed">Completed Tasks</h1>
+      <h1 class="section-title-completed">Completed</h1>
 
       <section class="task-stats-completed">
         <div class="completed-section-tasks-count">
@@ -264,5 +264,22 @@
     </section>
   </section>
 </body>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("fade-in")
+
+    function handlePageTransition(event) {
+      event.preventDefault();
+
+      document.body.classList.remove("fade-in");
+      document.body.classList.add("fade-out");
+      window.location.href = event.target.href;
+    }
+  });
+
+  // document.querySelectorAll(".navlink").forEach((link) => {
+  //   link.addEventListener("click", handlePageTransition);
+  // });
+</script>
 
 </html>
