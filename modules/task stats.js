@@ -4,13 +4,22 @@ import {
   dailyTasksNumber,
 } from "./dom.js";
 
-import { storedTasks, storedFinishedTasks } from "./tasks.js";
+import { storedTasks } from "./tasks.js";
+import { storedFinishedTasks } from "./completed task.js";
 
 export const displayTaskStats = (function () {
   function taskStats() {
     pendingTasksNumber.textContent = `${storedTasks.myTasks.length}`;
-    completedTasksNumber.textContent = `${storedFinishedTasks.finishedTasks.length}`;
   }
 
-  return { taskStats };
+  function completedTaskStats() {
+    completedTasksNumber.textContent = `${
+      storedFinishedTasks.finishedTasks.length - 1
+    }`;
+    dailyTasksNumber.textContent = `${
+      storedFinishedTasks.finishedTasks.length - 1
+    }/5`;
+  }
+
+  return { taskStats, completedTaskStats };
 })();

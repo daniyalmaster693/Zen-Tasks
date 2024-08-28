@@ -40,13 +40,19 @@ export const editTaskButton = document.querySelector(".edit-task-button");
 
 // Dock
 
-export const taskContainerCompleted = document.querySelector(
-  ".task-container-completed"
-);
 export const homeButton = document.querySelector(".home-button");
 export const todayButton = document.querySelector(".today-button");
 export const completedButton = document.querySelector(".completed-button");
 export const projectsButton = document.querySelector(".projects-button");
+
+// Completed Section Dock
+
+export const completedHomeButton = document.querySelector(".home-button");
+export const completedTodayButton = document.querySelector(".today-button");
+export const completedSectionButton =
+  document.querySelector(".completed-button");
+export const completedProjectsButton =
+  document.querySelector(".projects-button");
 
 // Other
 
@@ -56,4 +62,7 @@ export const mainContainerCompleted = document.querySelector(
 );
 export const completedSectionCount = document.querySelector(
   "completed-section-tasks-count"
+);
+export const taskContainerCompleted = document.querySelector(
+  ".tasks-container-completed"
 );

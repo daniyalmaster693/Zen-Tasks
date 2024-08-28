@@ -8,7 +8,8 @@ import {
   editDueDateInput,
 } from "./dom.js";
 
-import { storedFinishedTasks, storedTasks, Task } from "./tasks.js";
+import { storedTasks, Task } from "./tasks.js";
+import { storedFinishedTasks, CompletedTask } from "./completed task.js";
 import { displayTaskStats } from "./task stats.js";
 import { displayInputErrors } from "./errors.js";
 
@@ -66,6 +67,8 @@ export const editTask = (function () {
     editTitleInput.value = `${storedTasks.myTasks[currentTaskIndex].title}`;
     editDescriptionInput.value = `${storedTasks.myTasks[currentTaskIndex].description}`;
     editDueDateInput.value = `${storedTasks.myTasks[currentTaskIndex].dueDate}`;
+
+    displayTaskStats.completedTaskStats();
   }
 
   return { editTaskDisplay };
@@ -110,12 +113,22 @@ export const completeTask = (function () {
       document.querySelector(".task-description");
     const completedTaskDueDate = document.querySelector(".date");
 
-    const taskTitle = completedTaskTitle.textContent;
-    const taskDescription = completedTaskDescription.textContent;
-    const taskDueDate = completedTaskDueDate.textContent;
+    const updatedTaskTitle = completedTaskTitle.textContent;
+    const updatedTaskDescription = completedTaskDescription.textContent;
+    const updatedTaskDueDate = completedTaskDueDate.textContent;
+
+    const userNewCompletedTask = new CompletedTask(
+      updatedTaskTitle,
+      updatedTaskDescription,
+      updatedTaskDueDate
+    );
+    userNewCompletedTask.displayCompletedTask();
+    storedFinishedTasks.finishedTasks.push(userNewCompletedTask);
+    displayTaskStats.taskStats();
 
     taskNode.remove();
     displayTaskStats.taskStats();
+    displayTaskStats.completedTaskStats();
   }
 
   return { completeNewTask };

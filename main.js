@@ -5,6 +5,12 @@ import {
   editTaskButton,
   modalOverlay,
   editModalOverlay,
+  homeButton,
+  completedButton,
+  completedHomeButton,
+  completedTodayButton,
+  completedSectionButton,
+  completedProjectsButton,
 } from "./modules/dom.js";
 
 import {
@@ -13,6 +19,11 @@ import {
   hideEditModalModule,
 } from "./modules/modals.js";
 
+import {
+  homeSection,
+  showCompletedTasksSection,
+} from "./modules/page switcher.js";
+
 import { createTasks, updateExistingTask } from "./modules/task management.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -20,5 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
   addTask.addEventListener("click", displayModalModule.showModal);
   editTaskButton.addEventListener("click", updateExistingTask.updateTask);
   modalOverlay.addEventListener("click", hideModalModule.hideModal);
+  completedButton.addEventListener(
+    "click",
+    showCompletedTasksSection.showCompletedSection
+  );
+  completedHomeButton.addEventListener("click", homeSection.showHomeSection);
   editModalOverlay.addEventListener("click", hideEditModalModule.hideModal);
 });

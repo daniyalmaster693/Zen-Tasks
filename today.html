@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta name="Enter page description" content="To Do List App" />
+  <link rel="stylesheet" href="today.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/Odin Project/Zen-Tasks/Assets/Zen Tasks.png" />
+  <!-- <script src="main.js" type="module"></script> -->
+  <title>Zen Tasks | Today</title>
+</head>
+
+<body>
+  <section class="main-container">
+    <section class="tasks-top">
+      <h1 class="section-title">Home</h1>
+
+      <section class="task-stats">
+        <div class="pending-tasks">
+          <p class="pending-number">0</p>
+          <p class="pending-description">Pending Tasks</p>
+        </div>
+
+        <div class="completed-tasks">
+          <p class="completed-number">0</p>
+          <p class="completed-description">Completed Tasks</p>
+        </div>
+
+        <div class="daily-tasks">
+          <p class="daily-tasks-number">0/5</p>
+          <p class="daily-tasks-description">Daily Goal</p>
+        </div>
+      </section>
+    </section>
+
+    <section class="tasks-container">
+      <p class="tasks-container-title">Tasks</p>
+
+      <!--
+      <div class="task">
+        <div class="task-information">
+          <div class="task-left-side">
+            <button class="complete-task">
+              <svg class="task-check" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="#f0f5f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-circle">
+                <circle cx="12" cy="12" r="10"></circle>
+              </svg>
+            </button>
+
+            <div class="task-content">
+              <h2 class="task-title">Task 1</h2>
+              <p class="task-description">Task Description</p>
+            </div>
+          </div>
+
+          <div class="task-right-side">
+            <p class="date">2024 - 08 - 21</p>
+
+            <div class="task-actions">
+              <button class="edit-task">
+                <img src="/Odin Project/Zen-Tasks/Assets/Edit.svg" alt="pencil icon">
+              </button>
+
+              <button class="delete-task">
+                <img src="/Odin Project/Zen-Tasks/Assets/Trash.svg" alt="trash icon">
+              </button>
+            </div>
+          </div>1
+        </div>
+
+        <div class="hr-container">
+          <hr class="task-hr">
+        </div>
+      </div> -->
+    </section>
+</body>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("fade-in")
+
+    function handlePageTransition(event) {
+      event.preventDefault();
+
+      document.body.classList.remove("fade-in");
+      document.body.classList.add("fade-out");
+      window.location.href = event.target.href;
+    }
+  });</script>
+
+</html>
