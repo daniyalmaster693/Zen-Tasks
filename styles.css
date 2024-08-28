@@ -67,6 +67,8 @@ body.fade-in {
 
 .main-container.visible {
   display: flex;
+  transition: opacity 0.4s ease-in-out;
+  animation: var(--fadeIn);
 }
 
 .main-container.invisible {
@@ -526,6 +528,8 @@ body.fade-in {
 
 .main-container-completed.visible {
   display: flex;
+  transition: opacity 0.4s ease-in-out;
+  animation: var(--fadeIn);
 }
 
 .main-container-completed.invisible {

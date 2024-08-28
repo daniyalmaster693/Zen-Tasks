@@ -47,7 +47,9 @@ export const projectsButton = document.querySelector(".projects-button");
 
 // Completed Section Dock
 
-export const completedHomeButton = document.querySelector(".home-button");
+export const completedHomeButton = document.querySelector(
+  ".home-button-completed"
+);
 export const completedTodayButton = document.querySelector(".today-button");
 export const completedSectionButton =
   document.querySelector(".completed-button");
