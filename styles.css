@@ -520,7 +520,7 @@ body.fade-in {
 /* Completed Section */
 
 .main-container-completed {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;

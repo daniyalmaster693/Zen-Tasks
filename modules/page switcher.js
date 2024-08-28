@@ -1,11 +1,4 @@
-import {
-  mainContainer,
-  mainContainerCompleted,
-  homeButton,
-  completedSectionButton,
-  completedButton,
-  completedHomeButton,
-} from "./dom.js";
+import { mainContainer, mainContainerCompleted } from "./dom.js";
 
 export const homeSection = (function () {
   function showHomeSection() {
