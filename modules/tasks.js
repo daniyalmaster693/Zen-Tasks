@@ -30,6 +30,10 @@ export class Task {
     const svg = document.createElementNS(svgNamespace, "svg");
     svg.classList.add("task-check");
 
+    if ((this.priority = "High")) {
+      svg.classList.add("high-priority");
+    }
+
     svg.setAttribute("class", "task-check");
     svg.setAttribute("width", "24");
     svg.setAttribute("height", "24");

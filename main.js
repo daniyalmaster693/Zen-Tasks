@@ -26,8 +26,11 @@ import {
 } from "./modules/page switcher.js";
 
 import { createTasks, updateExistingTask } from "./modules/task management.js";
+import { storeTasksLocal, retrieveStoredTasks } from "./modules/storage.js";
 
 // Event Listeners
+
+window.onload = retrieveStoredTasks.getStoredTasks();
 
 document.addEventListener("DOMContentLoaded", () => {
   createTask.addEventListener("click", createTasks.addNewTask);

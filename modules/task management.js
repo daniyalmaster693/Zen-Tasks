@@ -12,6 +12,7 @@ import { storedTasks, Task } from "./tasks.js";
 import { storedFinishedTasks, CompletedTask } from "./completed task.js";
 import { displayTaskStats } from "./task stats.js";
 import { displayInputErrors } from "./errors.js";
+import { storeTasksLocal, retrieveStoredTasks } from "./storage.js";
 
 import {
   hideModalModule,
@@ -38,9 +39,27 @@ export const createTasks = (function () {
     displayInputErrors.displayErrors();
     hideModalModule.hideModal();
     clearModalModule.clearModal();
+    storeTasksLocal.storeTasks();
+    retrieveStoredTasks.getStoredTasks();
   }
 
   return { addNewTask };
+})();
+
+export const createStoredTasks = (function () {
+  function displayStoredTasks() {
+    storedTasks.myTasks.forEach((task) => {
+      const taskTitle = task.title;
+      const taskDescription = task.description;
+      const taskDueDate = task.dueDate;
+
+      const userNewTask = new Task(taskTitle, taskDescription, taskDueDate);
+      userNewTask.displayTask();
+      displayTaskStats.taskStats();
+    });
+  }
+
+  return { displayStoredTasks };
 })();
 
 export const deleteTask = (function () {
@@ -49,7 +68,10 @@ export const deleteTask = (function () {
     storedTasks.myTasks.splice(taskIndex, 1);
     const taskNode = event.target.closest(".task");
     taskNode.remove();
+
     displayTaskStats.taskStats();
+    storeTasksLocal.storeTasks();
+    retrieveStoredTasks.getStoredTasks();
   }
 
   return { deleteNewTask };
@@ -69,6 +91,8 @@ export const editTask = (function () {
     editDueDateInput.value = `${storedTasks.myTasks[currentTaskIndex].dueDate}`;
 
     displayTaskStats.completedTaskStats();
+    storeTasksLocal.storeTasks();
+    retrieveStoredTasks.getStoredTasks();
   }
 
   return { editTaskDisplay };
@@ -95,6 +119,8 @@ export const updateExistingTask = (function () {
     taskDueDate.textContent = editTaskDueDate;
 
     hideEditModalModule.hideModal();
+    storeTasksLocal.storeTasks();
+    retrieveStoredTasks.getStoredTasks();
   }
 
   return { updateTask };
@@ -124,11 +150,14 @@ export const completeTask = (function () {
     );
     userNewCompletedTask.displayCompletedTask();
     storedFinishedTasks.finishedTasks.push(userNewCompletedTask);
-    displayTaskStats.taskStats();
 
     taskNode.remove();
+
     displayTaskStats.taskStats();
     displayTaskStats.completedTaskStats();
+
+    storeTasksLocal.storeTasks();
+    retrieveStoredTasks.getStoredTasks();
   }
 
   return { completeNewTask };
